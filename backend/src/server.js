@@ -67,7 +67,7 @@ app.use((req, res) => {
 
 app.use(errorHandler);
 
-const PORT = parseInt(process.env.PORT || '5000', 10);
+const PORT = parseInt(process.env.PORT || '3000', 10);
 
 const start = async () => {
   await connectDB();

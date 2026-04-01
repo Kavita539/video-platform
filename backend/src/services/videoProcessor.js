@@ -1,5 +1,6 @@
 const ffmpeg = require('fluent-ffmpeg');
 const ffmpegInstaller = require('@ffmpeg-installer/ffmpeg');
+const ffprobeInstaller = require('@ffprobe-installer/ffprobe');
 const path = require('path');
 const fs = require('fs');
 
@@ -8,6 +9,7 @@ const { emitProgress } = require('../config/socket');
 
 // Point fluent-ffmpeg at the bundled binary
 ffmpeg.setFfmpegPath(ffmpegInstaller.path);
+ffmpeg.setFfprobePath(ffprobeInstaller.path);
 
 const probeVideo = (filePath) => {
   return new Promise((resolve, reject) => {
