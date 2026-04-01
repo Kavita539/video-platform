@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect } from 'react';
-import { authAPI } from '../services/api';
 import { connectSocket, disconnectSocket } from '../services/socket';
+import { authAPI } from '../services/api';
 
 const AuthContext = createContext(null);
 
