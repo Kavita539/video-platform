@@ -1,8 +1,6 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
-// ── Helpers ──────────────────────────────────────────────────────────────────
-
 const signToken = (userId) =>
   jwt.sign({ id: userId }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRES_IN || '7d',
@@ -17,11 +15,7 @@ const sendTokenResponse = (user, statusCode, res) => {
   });
 };
 
-// ── Controllers ──────────────────────────────────────────────────────────────
 
-/**
- * POST /api/auth/register
- */
 const register = async (req, res, next) => {
   try {
     const { name, email, password, organisation } = req.body;
@@ -46,9 +40,6 @@ const register = async (req, res, next) => {
   }
 };
 
-/**
- * POST /api/auth/login
- */
 const login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
@@ -71,23 +62,14 @@ const login = async (req, res, next) => {
   }
 };
 
-/**
- * GET /api/auth/me  (protected)
- */
 const getMe = async (req, res) => {
   res.json({ success: true, user: req.user });
 };
 
-/**
- * POST /api/auth/logout  (protected — client should discard token)
- */
 const logout = async (req, res) => {
   res.json({ success: true, message: 'Logged out successfully' });
 };
 
-/**
- * GET /api/auth/users  (admin only)
- */
 const listUsers = async (req, res, next) => {
   try {
     const users = await User.find({ organisation: req.user.organisation })
@@ -100,9 +82,6 @@ const listUsers = async (req, res, next) => {
   }
 };
 
-/**
- * PATCH /api/auth/users/:id/role  (admin only)
- */
 const updateUserRole = async (req, res, next) => {
   try {
     const { role } = req.body;
@@ -130,9 +109,6 @@ const updateUserRole = async (req, res, next) => {
   }
 };
 
-/**
- * PATCH /api/auth/users/:id/status  (admin only)
- */
 const toggleUserStatus = async (req, res, next) => {
   try {
     const user = await User.findOneAndUpdate(

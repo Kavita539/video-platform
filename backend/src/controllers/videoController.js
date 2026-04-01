@@ -3,13 +3,6 @@ const path = require('path');
 const Video = require('../models/Video');
 const { processVideo } = require('../services/videoProcessor');
 
-// ── Upload ────────────────────────────────────────────────────────────────────
-
-/**
- * POST /api/videos/upload
- * Multer middleware runs first (see route). This handler persists
- * the record then kicks off async processing.
- */
 const uploadVideo = async (req, res, next) => {
   try {
     if (!req.file) {
@@ -44,17 +37,6 @@ const uploadVideo = async (req, res, next) => {
   }
 };
 
-// ── List ──────────────────────────────────────────────────────────────────────
-
-/**
- * GET /api/videos
- * Supports query params:
- *   status         (pending|processing|completed|failed)
- *   sensitivity    (safe|flagged|unanalysed)
- *   page           (default 1)
- *   limit          (default 20, max 100)
- *   search         (title substring)
- */
 const listVideos = async (req, res, next) => {
   try {
     const {
@@ -102,11 +84,7 @@ const listVideos = async (req, res, next) => {
   }
 };
 
-// ── Single video ──────────────────────────────────────────────────────────────
 
-/**
- * GET /api/videos/:id
- */
 const getVideo = async (req, res, next) => {
   try {
     const video = await Video.findOne({
@@ -132,12 +110,6 @@ const getVideo = async (req, res, next) => {
   }
 };
 
-// ── Streaming ─────────────────────────────────────────────────────────────────
-
-/**
- * GET /api/videos/:id/stream
- * Supports HTTP Range requests for seekable playback.
- */
 const streamVideo = async (req, res, next) => {
   try {
     const video = await Video.findOne({
@@ -200,7 +172,6 @@ const streamVideo = async (req, res, next) => {
 
       fileStream.pipe(res);
     } else {
-      // ── Full file ─────────────────────────────────────────────
       res.writeHead(200, {
         'Content-Length': fileSize,
         'Content-Type': video.mimeType,
@@ -213,11 +184,6 @@ const streamVideo = async (req, res, next) => {
   }
 };
 
-// ── Thumbnail ─────────────────────────────────────────────────────────────────
-
-/**
- * GET /api/videos/:id/thumbnail
- */
 const getThumbnail = async (req, res, next) => {
   try {
     const video = await Video.findById(req.params.id);
@@ -243,12 +209,6 @@ const getThumbnail = async (req, res, next) => {
   }
 };
 
-// ── Update ────────────────────────────────────────────────────────────────────
-
-/**
- * PATCH /api/videos/:id
- * Editors/admins can update title, description, tags.
- */
 const updateVideo = async (req, res, next) => {
   try {
     const { title, description, tags } = req.body;
@@ -281,12 +241,6 @@ const updateVideo = async (req, res, next) => {
   }
 };
 
-// ── Delete ────────────────────────────────────────────────────────────────────
-
-/**
- * DELETE /api/videos/:id
- * Soft-deletes the record; editors delete own, admins delete any in org.
- */
 const deleteVideo = async (req, res, next) => {
   try {
     const video = await Video.findOne({ _id: req.params.id, isDeleted: false });
@@ -311,11 +265,6 @@ const deleteVideo = async (req, res, next) => {
   }
 };
 
-// ── Stats (admin) ─────────────────────────────────────────────────────────────
-
-/**
- * GET /api/videos/stats
- */
 const getStats = async (req, res, next) => {
   try {
     const orgFilter = { isDeleted: false, organisation: req.user.organisation };
