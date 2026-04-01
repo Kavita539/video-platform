@@ -1,15 +1,15 @@
 export const Badge = ({ children, variant = "default", dot }) => {
   const variants = {
-    default: "bg-[var(--bg-overlay)] text-[var(--text-secondary)]",
-    safe: "bg-[rgba(63,207,142,0.12)] text-[var(--success)]",
-    flagged: "bg-[var(--danger-glow)] text-[var(--danger)]",
-    pending: "bg-[var(--bg-overlay)] text-[var(--text-muted)]",
-    processing: "bg-[rgba(79,163,247,0.12)] text-[var(--info)]",
-    completed: "bg-[rgba(63,207,142,0.10)] text-[var(--success)]",
-    failed: "bg-[var(--danger-glow)] text-[var(--danger)]",
-    admin: "bg-[var(--accent-glow)] text-[var(--accent)]",
-    editor: "bg-[rgba(79,163,247,0.12)] text-[var(--info)]",
-    viewer: "bg-[var(--bg-overlay)] text-[var(--text-secondary)]",
+    default: "overlay secondary",
+    safe: "bg-[rgba(63,207,142,0.12)] success",
+    flagged: "bg-[var(--danger-glow)] danger",
+    pending: "overlay muted",
+    processing: "bg-[rgba(79,163,247,0.12)] info",
+    completed: "bg-[rgba(63,207,142,0.10)] success",
+    failed: "bg-[var(--danger-glow)] danger",
+    admin: "bg-[var(--accent-glow)] accent",
+    editor: "bg-[rgba(79,163,247,0.12)] info",
+    viewer: "overlay secondary",
   };
 
   return (

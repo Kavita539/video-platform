@@ -6,15 +6,15 @@ export const Modal = ({ open, onClose, title, children }) => {
       onClick={onClose}
     >
       <div 
-        className="bg-[var(--bg-surface)] border border-[var(--border-bright)] rounded-[var(--radius-lg)] w-full max-w-[540px] max-height-[90vh] overflow-y-auto animate-[fadeUp_0.35s_ease]" 
+        className="surface border border-bright rounded-[var(--radius-lg)] w-full max-w-[540px] max-height-[90vh] overflow-y-auto animate-[fadeUp_0.35s_ease]" 
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex items-center justify-between p-[20px_24px_16px] border-b border-[var(--border)]">
+        <div className="flex items-center justify-between p-[20px_24px_16px] border-b border">
           <h3 className="font-[var(--font-display)] text-[1rem] font-bold">
             {title}
           </h3>
           <button 
-            className="bg-transparent border-none text-[var(--text-muted)] text-[1rem] p-[4px_8px] rounded-[var(--radius-sm)] transition-colors hover:text-[var(--text-primary)] hover:bg-[var(--bg-raised)]" 
+            className="bg-transparent border-none muted text-[1rem] p-[4px_8px] rounded-[var(--radius-sm)] transition-colors hover:primary hover:raised" 
             onClick={onClose}
           >
             ✕

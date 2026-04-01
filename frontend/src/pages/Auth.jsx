@@ -43,7 +43,7 @@ export default function AuthPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-6 relative overflow-hidden bg-[var(--bg-base)]">
+    <div className="min-h-screen flex items-center justify-center p-6 relative overflow-hidden base">
       <div
         className="absolute inset-0 pointer-events-none opacity-50"
         style={{
@@ -64,17 +64,17 @@ export default function AuthPage() {
         aria-hidden
       />
 
-      <div className="bg-[var(--bg-surface)] border border-[var(--border-bright)] rounded-[var(--radius-lg)] p-10 w-full max-w-[420px] relative z-10 shadow-[0_32px_80px_rgba(0,0,0,0.5)] animate-[fadeUp_0.35s_ease_forwards]">
+      <div className="surface border border-bright rounded-[var(--radius-lg)] p-10 w-full max-w-[420px] relative z-10 shadow-[0_32px_80px_rgba(0,0,0,0.5)] animate-[fadeUp_0.35s_ease_forwards]">
         {/* Brand */}
         <div className="flex items-center gap-[10px] mb-[6px]">
-          <span className="text-[1.4rem] text-[var(--accent)]">▶</span>
+          <span className="text-[1.4rem] accent">▶</span>
           <span className="font-[var(--font-display)] text-[1.1rem] font-extrabold tracking-[0.14em]">
             VAULTCAST
           </span>
         </div>
 
         {/* Tagline */}
-        <p className="text-[0.78rem] text-[var(--text-muted)] mb-[28px] tracking-[0.02em]">
+        <p className="text-[0.78rem] muted mb-[28px] tracking-[0.02em]">
           {mode === "login"
             ? "Sign in to your workspace"
             : "Create a new workspace"}
@@ -126,7 +126,7 @@ export default function AuthPage() {
           />
 
           {error && (
-            <p className="text-[0.78rem] text-[var(--danger)] bg-[var(--danger-glow)] border border-[var(--danger-dim)] p-[8px_12px] rounded-[var(--radius-sm)]">
+            <p className="text-[0.78rem] danger bg-[var(--danger-glow)] border border-[var(--danger-dim)] p-[8px_12px] rounded-[var(--radius-sm)]">
               {error}
             </p>
           )}
@@ -143,13 +143,13 @@ export default function AuthPage() {
         </form>
 
         {/* Switch Mode */}
-        <p className="mt-5 text-center text-[0.78rem] text-[var(--text-muted)]">
+        <p className="mt-5 text-center text-[0.78rem] muted">
           {mode === "login"
             ? "Don't have an account? "
             : "Already have an account? "}
           <button
             type="button"
-            className="bg-transparent border-none text-[var(--text-[var(--accent)])] font-[var(--font-mono)] text-[0.78rem] cursor-pointer hover:underline hover:text-[var(--accent)] transition-all"
+            className="bg-transparent border-none text-[var(--accent)] font-[var(--font-mono)] text-[0.78rem] cursor-pointer hover:underline hover:accent transition-all"
             onClick={() => {
               setMode(mode === "login" ? "register" : "login");
               setError("");
