@@ -39,13 +39,13 @@ export const Button = forwardRef(
 
     const variants = {
       primary:
-        "accent text-[#0d0e10] enabled:hover:bg-[#ffb733] enabled:hover:shadow-[0_0_20px_var(--accent-glow)]",
+        "bg-accent text-[#0d0e10] enabled:hover:bg-[#ffb733] enabled:hover:shadow-[0_0_20px_var(--accent-glow)]",
       secondary:
-        "bg-transparent primary border border-bright enabled:hover:accent enabled:hover:accent",
+        "bg-transparent text-primary border border-bright enabled:hover:border-accent enabled:hover:text-accent",
       ghost:
-        "bg-transparent secondary enabled:hover:primary enabled:hover:raised",
+        "bg-transparent text-secondary enabled:hover:text-primary enabled:hover:bg-raised",
       danger:
-        "danger text-white enabled:hover:bg-[#ff5555] enabled:hover:shadow-[0_0_20px_var(--danger-glow)]",
+        "bg-danger text-white enabled:hover:bg-[#ff5555] enabled:hover:shadow-[0_0_20px_var(--danger-glow)]",
     };
 
     return (

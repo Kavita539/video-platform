@@ -1,15 +1,15 @@
 export const Badge = ({ children, variant = "default", dot }) => {
   const variants = {
-    default: "overlay secondary",
-    safe: "bg-[rgba(63,207,142,0.12)] success",
-    flagged: "bg-[var(--danger-glow)] danger",
-    pending: "overlay muted",
-    processing: "bg-[rgba(79,163,247,0.12)] info",
-    completed: "bg-[rgba(63,207,142,0.10)] success",
-    failed: "bg-[var(--danger-glow)] danger",
-    admin: "bg-[var(--accent-glow)] accent",
-    editor: "bg-[rgba(79,163,247,0.12)] info",
-    viewer: "overlay secondary",
+    default: "bg-overlay text-secondary",
+    safe: "bg-[rgba(63,207,142,0.12)] text-success",
+    flagged: "bg-[var(--danger-glow)] text-danger",
+    pending: "bg-overlay text-muted",
+    processing: "bg-[rgba(79,163,247,0.12)] text-info",
+    completed: "bg-[rgba(63,207,142,0.10)] text-success",
+    failed: "bg-[var(--danger-glow)] text-danger",
+    admin: "bg-[var(--accent-glow)] text-accent",
+    editor: "bg-[rgba(79,163,247,0.12)] text-info",
+    viewer: "bg-overlay text-secondary",
   };
 
   return (

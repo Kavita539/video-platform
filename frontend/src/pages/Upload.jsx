@@ -100,13 +100,13 @@ export default function Upload() {
             <h1 className="font-[var(--font-display)] text-[1.6rem] font-extrabold tracking-tight leading-snug">
               Processing
             </h1>
-            <p className="text-[0.78rem] muted mt-1 tracking-wider">
+            <p className="text-[0.78rem] text-muted mt-1 tracking-wider">
               {resultVideo?.title}
             </p>
           </div>
         </div>
 
-        <div className="max-w-[520px] surface border border rounded-[var(--radius-lg)] p-8 flex flex-col gap-7 animate-[fadeUp_0.35s_ease_forwards]">
+        <div className="max-w-[520px] bg-surface border border-border rounded-[var(--radius-lg)] p-8 flex flex-col gap-7 animate-[fadeUp_0.35s_ease_forwards]">
           <div className="flex flex-col gap-3">
             {[
               { key: "upload", label: "Upload complete", done: true },
@@ -122,10 +122,10 @@ export default function Upload() {
               return (
                 <div
                   key={s.key}
-                  className={`flex items-center gap-3 text-[0.80rem] transition-colors duration-[var(--transition)] ${isDone ? "secondary" : isActive ? "primary" : "muted"}`}
+                  className={`flex items-center gap-3 text-[0.80rem] transition-colors duration-[var(--transition)] ${isDone ? "text-secondary" : isActive ? "text-primary" : "text-muted"}`}
                 >
                   <span
-                    className={`w-2 h-2 rounded-full flex-shrink-0 transition-all duration-[var(--transition)] ${isDone ? "success" : isActive ? "info shadow-[0_0_8px_var(--info)] animate-[pulseDot_1s_ease_infinite]" : "border-bright"}`}
+                    className={`w-2 h-2 rounded-full flex-shrink-0 transition-all duration-[var(--transition)] ${isDone ? "bg-success" : isActive ? "bg-info shadow-[0_0_8px_var(--info)] animate-[pulseDot_1s_ease_infinite]" : "bg-border-bright"}`}
                   />
                   <span>{s.label}</span>
                 </div>
@@ -152,14 +152,14 @@ export default function Upload() {
               {liveJob.status === "completed" ? (
                 <>
                   <div className="flex items-start gap-3.5 p-[14px_16px] rounded-[var(--radius)] text-[0.82rem] bg-[rgba(63,207,142,0.08)] border border-[rgba(63,207,142,0.2)]">
-                    <span className="text-[1.2rem] flex-shrink-0 leading-[1.4] success">
+                    <span className="text-[1.2rem] flex-shrink-0 leading-[1.4] text-success">
                       ✓
                     </span>
                     <div>
                       <strong className="block mb-1">
                         Processing complete
                       </strong>
-                      <p className="muted flex items-center gap-1.5 flex-wrap">
+                      <p className="text-muted flex items-center gap-1.5 flex-wrap">
                         Content classified as{" "}
                         <Badge
                           variant={
@@ -187,12 +187,12 @@ export default function Upload() {
                 </>
               ) : (
                 <div className="flex items-start gap-3.5 p-[14px_16px] rounded-[var(--radius)] text-[0.82rem] bg-[var(--danger-glow)] border border-[var(--danger-dim)]">
-                  <span className="text-[1.2rem] flex-shrink-0 leading-[1.4] danger">
+                  <span className="text-[1.2rem] flex-shrink-0 leading-[1.4] text-danger">
                     ✕
                   </span>
                   <div>
                     <strong className="block mb-1">Processing failed</strong>
-                    <p className="muted flex items-center gap-1.5 flex-wrap">
+                    <p className="text-muted flex items-center gap-1.5 flex-wrap">
                       {liveJob.message ||
                         "An error occurred during processing."}
                     </p>
@@ -225,7 +225,7 @@ export default function Upload() {
       >
         {/* Drop zone */}
         <div
-          className={`group border-2 border-dashed rounded-[var(--radius-lg)] text-center cursor-pointer transition-colors duration-[var(--transition)] surface ${dragging ? "accent bg-[var(--accent-glow)]" : "border-bright hover:accent hover:bg-[var(--accent-glow)]"} ${file ? "border-solid accent p-[20px_24px] cursor-default" : "p-[48px_24px]"}`}
+          className={`group border-2 border-dashed rounded-[var(--radius-lg)] text-center cursor-pointer transition-colors duration-[var(--transition)] bg-surface ${dragging ? "border-accent bg-[var(--accent-glow)]" : "border-border-bright hover:border-accent hover:bg-[var(--accent-glow)]"} ${file ? "border-solid accent p-[20px_24px] cursor-default" : "p-[48px_24px]"}`}
           onDragEnter={(e) => {
             e.preventDefault();
             setDragging(true);
@@ -251,20 +251,20 @@ export default function Upload() {
 
           {file ? (
             <div className="flex items-center gap-3.5">
-              <span className="text-[1.5rem] accent flex-shrink-0">
+              <span className="text-[1.5rem] text-accent flex-shrink-0">
                 ▶
               </span>
               <div className="flex-1 text-left min-w-0">
                 <span className="block text-[0.85rem] font-medium whitespace-nowrap overflow-hidden text-ellipsis">
                   {file.name}
                 </span>
-                <span className="text-[0.72rem] muted">
+                <span className="text-[0.72rem] text-muted">
                   {(file.size / 1024 / 1024).toFixed(1)} MB
                 </span>
               </div>
               <button
                 type="button"
-                className="bg-transparent border-none muted text-[0.9rem] p-1.5 rounded-[var(--radius-sm)] transition-colors duration-[var(--transition)] hover:danger hover:bg-[var(--danger-glow)]"
+                className="bg-transparent border-none text-muted text-[0.9rem] p-1.5 rounded-[var(--radius-sm)] transition-colors duration-[var(--transition)] hover:text-danger hover:bg-[var(--danger-glow)]"
                 onClick={(e) => {
                   e.stopPropagation();
                   setFile(null);
@@ -276,13 +276,13 @@ export default function Upload() {
           ) : (
             <div className="flex flex-col items-center gap-2.5">
               <span
-                className={`text-[2rem] muted ${dragging ? "accent" : ""}`}
+                className={`text-[2rem] text-muted ${dragging ? "text-accent" : ""}`}
               >
                 ⬆
               </span>
-              <span className="text-[0.82rem] secondary">
+              <span className="text-[0.82rem] text-secondary">
                 Drop video here or{" "}
-                <u className="accent no-underline group-hover:underline">
+                <u className="text-accent no-underline group-hover:underline">
                   browse
                 </u>
               </span>
@@ -315,7 +315,7 @@ export default function Upload() {
         </div>
 
         {error && (
-          <p className="text-[0.78rem] danger bg-[var(--danger-glow)] border border-[var(--danger-dim)] p-[8px_12px] rounded-[var(--radius-sm)]">
+          <p className="text-[0.78rem] text-danger bg-[var(--danger-glow)] border border-[var(--danger-dim)] p-[8px_12px] rounded-[var(--radius-sm)]">
             {error}
           </p>
         )}

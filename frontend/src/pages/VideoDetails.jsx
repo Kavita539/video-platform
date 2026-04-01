@@ -97,8 +97,8 @@ export default function VideoDetail() {
   if (loading)
     return (
       <div className="p-[20px_16px] md:p-[36px_40px] max-w-[1200px] animate-[fadeUp_0.35s_ease_forwards]">
-        <div className="flex flex-col items-center justify-center gap-5 min-height-[60vh] secondary text-[0.85rem]">
-          <div className="w-8 h-8 border-2 accent border-t-transparent rounded-full animate-spin" />
+        <div className="flex flex-col items-center justify-center gap-5 min-height-[60vh] text-secondary text-[0.85rem]">
+          <div className="w-8 h-8 border-2 border-accent border-t-transparent rounded-full animate-spin" />
         </div>
       </div>
     );
@@ -106,11 +106,11 @@ export default function VideoDetail() {
   if (error)
     return (
       <div className="p-[20px_16px] md:p-[36px_40px] max-w-[1200px] animate-[fadeUp_0.35s_ease_forwards]">
-        <div className="flex flex-col items-center justify-center gap-5 min-height-[60vh] secondary text-[0.85rem]">
+        <div className="flex flex-col items-center justify-center gap-5 min-height-[60vh] text-secondary text-[0.85rem]">
           <p>{error}</p>
           <Link
             to="/library"
-            className="bg-transparent border border secondary font-[var(--font-mono)] text-[0.72rem] p-[7px_14px] rounded-[var(--radius-sm)] tracking-[0.04em] uppercase hover:raised transition-colors duration-[var(--transition)]"
+            className="bg-transparent border border-border text-secondary font-[var(--font-mono)] text-[0.72rem] p-[7px_14px] rounded-[var(--radius-sm)] tracking-[0.04em] uppercase hover:bg-raised transition-colors duration-[var(--transition)]"
           >
             ← Back to library
           </Link>
@@ -121,15 +121,15 @@ export default function VideoDetail() {
   return (
     <div className="p-[20px_16px] md:p-[36px_40px] max-w-[1200px] animate-[fadeUp_0.35s_ease_forwards]">
       {/* Breadcrumb */}
-      <div className="flex items-center gap-2 mb-6 text-[0.75rem] muted">
+      <div className="flex items-center gap-2 mb-6 text-[0.75rem] text-muted">
         <Link
           to="/library"
-          className="accent transition-opacity duration-[var(--transition)] hover:opacity-70"
+          className="text-accent transition-opacity duration-[var(--transition)] hover:opacity-70"
         >
           Library
         </Link>
-        <span className="border-bright">/</span>
-        <span className="secondary overflow-hidden text-ellipsis whitespace-nowrap max-w-[300px]">
+        <span className="text-border-bright">/</span>
+        <span className="text-secondary overflow-hidden text-ellipsis whitespace-nowrap max-w-[300px]">
           {video.title}
         </span>
       </div>
@@ -138,7 +138,7 @@ export default function VideoDetail() {
         {/* ── Left: player / processing ── */}
         <div className="w-full">
           {isReady ? (
-            <div className="bg-black rounded-[var(--radius)] overflow-hidden border border aspect-video flex items-center justify-center">
+            <div className="bg-black rounded-[var(--radius)] overflow-hidden border border-border aspect-video flex items-center justify-center">
               <video
                 ref={videoRef}
                 className="w-full h-full block outline-none [&::-webkit-media-controls-panel]:bg-[rgba(13,14,16,0.9)]"
@@ -150,11 +150,11 @@ export default function VideoDetail() {
               </video>
             </div>
           ) : isProcessing ? (
-            <div className="aspect-video surface border border rounded-[var(--radius)] flex flex-col items-center justify-center gap-4 p-8">
+            <div className="aspect-video bg-surface border border-border rounded-[var(--radius)] flex flex-col items-center justify-center gap-4 p-8">
               <div className="text-[2rem] info animate-spin">
                 ⟳
               </div>
-              <p className="text-[0.85rem] secondary tracking-[0.04em]">
+              <p className="text-[0.85rem] text-secondary tracking-[0.04em]">
                 {liveJob?.stage || "Processing…"}
               </p>
               <div className="w-full max-w-[320px]">
@@ -163,14 +163,14 @@ export default function VideoDetail() {
                   variant="processing"
                 />
               </div>
-              <p className="text-[0.72rem] muted">
+              <p className="text-[0.72rem] text-muted">
                 Real-time updates via WebSocket
               </p>
             </div>
           ) : (
-            <div className="aspect-video surface border border-[var(--danger-dim)] rounded-[var(--radius)] flex flex-col items-center justify-center gap-4 p-8">
-              <div className="text-[2rem] danger">✕</div>
-              <p className="text-[0.85rem] secondary tracking-[0.04em]">
+            <div className="aspect-video bg-surface border border-[var(--danger-dim)] rounded-[var(--radius)] flex flex-col items-center justify-center gap-4 p-8">
+              <div className="text-[2rem] text-danger">✕</div>
+              <p className="text-[0.85rem] text-secondary tracking-[0.04em]">
                 Processing failed
               </p>
               {video.processingError && (
@@ -187,7 +187,7 @@ export default function VideoDetail() {
               className={`flex items-start gap-3 p-[12px_16px] rounded-[var(--radius)] mt-3 text-[0.80rem] ${video.sensitivityStatus === "flagged" ? "bg-[var(--danger-glow)] border border-[var(--danger-dim)]" : "bg-[rgba(63,207,142,0.08)] border border-[rgba(63,207,142,0.2)]"}`}
             >
               <span
-                className={`text-[1rem] leading-[1.5] flex-shrink-0 ${video.sensitivityStatus === "flagged" ? "danger" : "success"}`}
+                className={`text-[1rem] leading-[1.5] flex-shrink-0 ${video.sensitivityStatus === "flagged" ? "text-danger" : "text-success"}`}
               >
                 {video.sensitivityStatus === "flagged" ? "⚠" : "✓"}
               </span>
@@ -198,12 +198,12 @@ export default function VideoDetail() {
                     : "Content is safe"}
                 </strong>
                 {video.sensitivityScore != null && (
-                  <span className="text-[0.72rem] muted ml-2">
+                  <span className="text-[0.72rem] text-muted ml-2">
                     Confidence: {(video.sensitivityScore * 100).toFixed(0)}%
                   </span>
                 )}
                 {video.sensitivityReason && (
-                  <p className="text-[0.75rem] muted mt-1">
+                  <p className="text-[0.75rem] text-muted mt-1">
                     {video.sensitivityReason}
                   </p>
                 )}
@@ -213,7 +213,7 @@ export default function VideoDetail() {
         </div>
 
         {/* ── Right: metadata ── */}
-        <aside className="surface border border rounded-[var(--radius-lg)] p-[22px] flex flex-col gap-[18px] md:sticky md:top-6">
+        <aside className="bg-surface border border-border rounded-[var(--radius-lg)] p-[22px] flex flex-col gap-[18px] md:sticky md:top-6">
           {editing ? (
             <div className="flex flex-col gap-3.5 animate-[fadeIn_0.2s_ease]">
               <Input
@@ -264,7 +264,7 @@ export default function VideoDetail() {
                 </h1>
                 {canEdit && (
                   <button
-                    className="bg-transparent border-none accent font-[var(--font-mono)] text-[0.72rem] cursor-pointer p-[4px_8px] rounded-[var(--radius-sm)] whitespace-nowrap transition-colors duration-[var(--transition)] hover:bg-[var(--accent-glow)]"
+                    className="bg-transparent border-none text-accent font-[var(--font-mono)] text-[0.72rem] cursor-pointer p-[4px_8px] rounded-[var(--radius-sm)] whitespace-nowrap transition-colors duration-[var(--transition)] hover:bg-[var(--accent-glow)]"
                     onClick={() => setEditing(true)}
                   >
                     ✎ Edit
@@ -273,7 +273,7 @@ export default function VideoDetail() {
               </div>
 
               {video.description && (
-                <p className="text-[0.80rem] secondary leading-[1.6]">
+                <p className="text-[0.80rem] text-secondary leading-[1.6]">
                   {video.description}
                 </p>
               )}
@@ -308,7 +308,7 @@ export default function VideoDetail() {
           </div>
 
           {/* Metadata table */}
-          <div className="flex flex-col border border rounded-[var(--radius-sm)] overflow-hidden">
+          <div className="flex flex-col border border-border rounded-[var(--radius-sm)] overflow-hidden">
             {[
               ["File", video.originalName],
               ["Size", fmt(video.fileSize)],
@@ -331,12 +331,12 @@ export default function VideoDetail() {
             ].map(([k, v], idx) => (
               <div
                 key={k}
-                className={`flex items-baseline justify-between gap-3 p-[7px_12px] text-[0.72rem] border-b border last:border-b-0 ${idx % 2 === 0 ? "raised" : ""}`}
+                className={`flex items-baseline justify-between gap-3 p-[7px_12px] text-[0.72rem] border-b border-border last:border-b-0 ${idx % 2 === 0 ? "bg-raised" : ""}`}
               >
-                <span className="muted tracking-[0.04em] flex-shrink-0">
+                <span className="text-muted tracking-[0.04em] flex-shrink-0">
                   {k}
                 </span>
-                <span className="secondary text-right break-all font-mono">
+                <span className="text-secondary text-right break-all font-mono">
                   {v}
                 </span>
               </div>
@@ -349,7 +349,7 @@ export default function VideoDetail() {
               {video.tags.map((t) => (
                 <span
                   key={t}
-                  className="text-[0.68rem] tracking-[0.04em] p-[3px_8px] raised muted rounded-[var(--radius-sm)] border border"
+                  className="text-[0.68rem] tracking-[0.04em] p-[3px_8px] bg-raised text-muted rounded-[var(--radius-sm)] border border-border"
                 >
                   {t}
                 </span>

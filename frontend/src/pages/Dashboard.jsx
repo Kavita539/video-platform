@@ -8,18 +8,18 @@ import { ProgressBar } from "../components/ProgressBar";
 
 const StatCard = ({ label, value, accent, loading }) => (
   <div
-    className={`surface border border rounded-[var(--radius)] p-[18px_20px] flex flex-col gap-2 animate-[fadeUp_0.35s_ease_forwards] transition-colors duration-[var(--transition)] hover:border-bright ${accent ? "border-[var(--danger-dim)] bg-[var(--danger-glow)]" : ""}`}
+    className={`bg-surface border border-border rounded-[var(--radius)] p-[18px_20px] flex flex-col gap-2 animate-[fadeUp_0.35s_ease_forwards] transition-colors duration-[var(--transition)] hover:border-border-bright ${accent ? "border-[var(--danger-dim)] bg-[var(--danger-glow)]" : ""}`}
   >
-    <span className="text-[0.68rem] muted tracking-[0.08em] uppercase">
+    <span className="text-[0.68rem] text-muted tracking-[0.08em] uppercase">
       {label}
     </span>
     {loading ? (
       <span
-        className="animate-pulse overlay"
+        className="animate-pulse bg-overlay"
         style={{ height: 36, width: 60, borderRadius: 4 }}
       />
     ) : (
-      <span className="font-[var(--font-display)] text-[2rem] font-extrabold primary leading-none">
+      <span className="font-[var(--font-display)] text-[2rem] font-extrabold text-primary leading-none">
         {value ?? "—"}
       </span>
     )}
@@ -77,14 +77,14 @@ export default function Dashboard() {
           <h1 className="font-[var(--font-display)] text-[1.6rem] font-extrabold tracking-tight leading-snug">
             Dashboard
           </h1>
-          <p className="text-[0.78rem] muted mt-1 tracking-wider">
+          <p className="text-[0.78rem] text-muted mt-1 tracking-wider">
             Welcome back, {user.name}
           </p>
         </div>
         {(user.role === "editor" || user.role === "admin") && (
           <Link
             to="/upload"
-            className="inline-flex items-center justify-center gap-2 border-none rounded-[var(--radius-sm)] font-[var(--font-mono)] font-medium tracking-wider uppercase cursor-pointer transition-all duration-[var(--transition)] whitespace-nowrap accent text-[#0d0e10] hover:bg-[#ffb733] hover:shadow-[0_0_20px_var(--accent-glow)] p-[10px_20px] text-[0.78rem] self-start"
+            className="inline-flex items-center justify-center gap-2 border-none rounded-[var(--radius-sm)] font-[var(--font-mono)] font-medium tracking-wider uppercase cursor-pointer transition-all duration-[var(--transition)] whitespace-nowrap bg-accent text-[#0d0e10] hover:bg-[#ffb733] hover:shadow-[0_0_20px_var(--accent-glow)] p-[10px_20px] text-[0.78rem] self-start"
           >
             ⬆ Upload video
           </Link>
@@ -133,18 +133,18 @@ export default function Dashboard() {
       {/* Active processing jobs */}
       {activeJobs.length > 0 && (
         <section className="mb-10">
-          <h2 className="font-[var(--font-display)] text-[0.85rem] font-bold tracking-[0.08em] uppercase secondary flex items-center gap-2 mb-4">
-            <span className="inline-block w-[7px] h-[7px] rounded-full info animate-[pulseDot_1.2s_ease_infinite]" />
+          <h2 className="font-[var(--font-display)] text-[0.85rem] font-bold tracking-[0.08em] uppercase text-secondary flex items-center gap-2 mb-4">
+            <span className="inline-block w-[7px] h-[7px] rounded-full bg-info animate-[pulseDot_1.2s_ease_infinite]" />
             Processing now
           </h2>
           <div className="flex flex-col gap-[10px] mb-2">
             {activeJobs.map(([videoId, job]) => (
               <div
                 key={videoId}
-                className="surface border border border-l-[3px] border-l-[var(--info)] rounded-[var(--radius)] p-[14px_16px] flex flex-col gap-[10px] animate-[fadeUp_0.3s_ease_forwards]"
+                className="bg-surface border border-border border-l-[3px] border-l-[var(--info)] rounded-[var(--radius)] p-[14px_16px] flex flex-col gap-[10px] animate-[fadeUp_0.3s_ease_forwards]"
               >
                 <div className="flex items-center justify-between">
-                  <span className="text-[0.72rem] muted tracking-widest">
+                  <span className="text-[0.72rem] text-muted tracking-widest">
                     {videoId.slice(-8)}
                   </span>
                   <Badge variant="processing" dot>
@@ -161,12 +161,12 @@ export default function Dashboard() {
       {/* Recent videos */}
       <section className="mb-10">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="font-[var(--font-display)] text-[0.85rem] font-bold tracking-[0.08em] uppercase secondary flex items-center gap-2">
+          <h2 className="font-[var(--font-display)] text-[0.85rem] font-bold tracking-[0.08em] uppercase text-secondary flex items-center gap-2">
             Recent videos
           </h2>
           <Link
             to="/library"
-            className="text-[0.75rem] accent tracking-wider transition-opacity hover:opacity-70"
+            className="text-[0.75rem] text-accent tracking-wider transition-opacity hover:opacity-70"
           >
             View all →
           </Link>
@@ -177,17 +177,17 @@ export default function Dashboard() {
             {[...Array(6)].map((_, i) => (
               <div
                 key={i}
-                className="animate-pulse overlay rounded-lg h-[110px]"
+                className="animate-pulse bg-overlay rounded-lg h-[110px]"
               />
             ))}
           </div>
         ) : recent.length === 0 ? (
           <div className="flex flex-col items-center justify-center p-[60px_20px] text-center gap-[10px]">
             <div className="text-[2.5rem] mb-2 opacity-40">▤</div>
-            <p className="font-[var(--font-display)] text-[0.95rem] secondary">
+            <p className="font-[var(--font-display)] text-[0.95rem] text-secondary">
               No videos yet
             </p>
-            <p className="text-[0.8rem] muted max-w-[320px]">
+            <p className="text-[0.8rem] text-muted max-w-[320px]">
               Upload your first video to get started.
             </p>
           </div>
@@ -200,10 +200,10 @@ export default function Dashboard() {
                 <Link
                   key={v._id}
                   to={`/library/${v._id}`}
-                  className="block surface border border rounded-[var(--radius)] p-4 transition-all duration-[var(--transition)] text-none animate-[fadeUp_0.35s_ease_forwards] hover:border-bright hover:raised"
+                  className="block bg-surface border border-border rounded-[var(--radius)] p-4 transition-all duration-[var(--transition)] text-none animate-[fadeUp_0.35s_ease_forwards] hover:border-border-bright hover:bg-raised"
                 >
                   <div className="flex items-start justify-between gap-2 mb-3">
-                    <span className="text-[0.82rem] font-medium primary leading-snug line-clamp-2">
+                    <span className="text-[0.82rem] font-medium text-primary leading-snug line-clamp-2">
                       {v.title}
                     </span>
                     <Badge variant={statusVariant(displayStatus)}>
@@ -218,7 +218,7 @@ export default function Dashboard() {
                       variant="processing"
                     />
                   ) : (
-                    <div className="flex items-center gap-[10px] flex-wrap text-[0.7rem] muted">
+                    <div className="flex items-center gap-[10px] flex-wrap text-[0.7rem] text-muted">
                       <span>{(v.fileSize / 1024 / 1024).toFixed(1)} MB</span>
                       {v.sensitivityStatus !== "unanalysed" && (
                         <Badge

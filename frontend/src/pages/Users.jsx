@@ -51,7 +51,7 @@ export default function Users() {
           <h1 className="font-[var(--font-display)] text-[1.6rem] font-extrabold tracking-tight leading-snug">
             Users
           </h1>
-          <p className="text-[0.78rem] muted mt-1 tracking-wider">
+          <p className="text-[0.78rem] text-muted mt-1 tracking-wider">
             {users.length} member{users.length !== 1 ? "s" : ""} in your
             organisation
           </p>
@@ -60,32 +60,32 @@ export default function Users() {
 
       {loading ? (
         <div className="flex justify-center p-[80px_0]">
-          <Spinner size="lg" className="accent" />
+          <Spinner size="lg" className="text-accent" />
         </div>
       ) : users.length === 0 ? (
         <Empty icon="◎" title="No users found" />
       ) : (
         /* Table Wrapper */
-        <div className="overflow-x-auto border border rounded-[var(--radius)] animate-[fadeUp_0.35s_ease_forwards]">
+        <div className="overflow-x-auto border border-border rounded-[var(--radius)] animate-[fadeUp_0.35s_ease_forwards]">
           <table className="w-full border-collapse text-[0.80rem]">
             <thead>
-              <tr className="border-b border raised">
-                <th className="p-[11px_16px] text-left text-[0.68rem] font-semibold tracking-[0.08em] uppercase muted whitespace-nowrap">
+              <tr className="border-b border-border bg-raised">
+                <th className="p-[11px_16px] text-left text-[0.68rem] font-semibold tracking-[0.08em] uppercase text-muted whitespace-nowrap">
                   User
                 </th>
-                <th className="p-[11px_16px] text-left text-[0.68rem] font-semibold tracking-[0.08em] uppercase muted whitespace-nowrap">
+                <th className="p-[11px_16px] text-left text-[0.68rem] font-semibold tracking-[0.08em] uppercase text-muted whitespace-nowrap">
                   Role
                 </th>
-                <th className="p-[11px_16px] text-left text-[0.68rem] font-semibold tracking-[0.08em] uppercase muted whitespace-nowrap">
+                <th className="p-[11px_16px] text-left text-[0.68rem] font-semibold tracking-[0.08em] uppercase text-muted whitespace-nowrap">
                   Status
                 </th>
-                <th className="p-[11px_16px] text-left text-[0.68rem] font-semibold tracking-[0.08em] uppercase muted whitespace-nowrap">
+                <th className="p-[11px_16px] text-left text-[0.68rem] font-semibold tracking-[0.08em] uppercase text-muted whitespace-nowrap">
                   Last login
                 </th>
-                <th className="p-[11px_16px] text-left text-[0.68rem] font-semibold tracking-[0.08em] uppercase muted whitespace-nowrap">
+                <th className="p-[11px_16px] text-left text-[0.68rem] font-semibold tracking-[0.08em] uppercase text-muted whitespace-nowrap">
                   Joined
                 </th>
-                <th className="p-[11px_16px] text-left text-[0.68rem] font-semibold tracking-[0.08em] uppercase muted whitespace-nowrap"></th>
+                <th className="p-[11px_16px] text-left text-[0.68rem] font-semibold tracking-[0.08em] uppercase text-muted whitespace-nowrap"></th>
               </tr>
             </thead>
             <tbody>
@@ -95,29 +95,29 @@ export default function Users() {
                 return (
                   <tr
                     key={u._id}
-                    className={`surface transition-colors duration-[var(--transition)] hover:raised [&:not(:last-child)_td]:border-b [&:not(:last-child)_td]:border ${!u.isActive ? "opacity-55" : ""}`}
+                    className={`bg-surface transition-colors duration-[var(--transition)] hover:bg-raised [&:not(:last-child)_td]:border-b [&:not(:last-child)_td]:border-border ${!u.isActive ? "opacity-55" : ""}`}
                   >
-                    <td className="p-[12px_16px] align-middle secondary">
+                    <td className="p-[12px_16px] align-middle text-secondary">
                       <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-[var(--radius-sm)] bg-[var(--accent-dim)] accent font-[var(--font-display)] font-bold text-[0.85rem] flex items-center justify-center flex-shrink-0">
+                        <div className="w-8 h-8 rounded-[var(--radius-sm)] bg-[var(--accent-dim)] text-accent font-[var(--font-display)] font-bold text-[0.85rem] flex items-center justify-center flex-shrink-0">
                           {u.name[0].toUpperCase()}
                         </div>
                         <div>
-                          <div className="font-medium primary whitespace-nowrap">
+                          <div className="font-medium text-primary whitespace-nowrap">
                             {u.name}
                           </div>
-                          <div className="text-[0.70rem] muted whitespace-nowrap">
+                          <div className="text-[0.70rem] text-muted whitespace-nowrap">
                             {u.email}
                           </div>
                         </div>
                       </div>
                     </td>
-                    <td className="p-[12px_16px] align-middle secondary">
+                    <td className="p-[12px_16px] align-middle text-secondary">
                       {isUpdatingRole ? (
                         <Spinner size="sm" />
                       ) : (
                         <select
-                          className="overlay border border rounded-[var(--radius-sm)] secondary font-[var(--font-mono)] text-[0.72rem] p-[5px_8px] cursor-pointer outline-none transition-colors duration-[var(--transition)] tracking-[0.04em] focus:accent"
+                          className="bg-overlay border border-border rounded-[var(--radius-sm)] text-secondary font-[var(--font-mono)] text-[0.72rem] p-[5px_8px] cursor-pointer outline-none transition-colors duration-[var(--transition)] tracking-[0.04em] focus:border-accent"
                           value={u.role}
                           onChange={(e) =>
                             handleRoleChange(u._id, e.target.value)
@@ -131,12 +131,12 @@ export default function Users() {
                         </select>
                       )}
                     </td>
-                    <td className="p-[12px_16px] align-middle secondary">
+                    <td className="p-[12px_16px] align-middle text-secondary">
                       <Badge variant={u.isActive ? "safe" : "failed"}>
                         {u.isActive ? "Active" : "Inactive"}
                       </Badge>
                     </td>
-                    <td className="p-[12px_16px] align-middle muted font-mono text-[0.72rem] whitespace-nowrap">
+                    <td className="p-[12px_16px] align-middle text-muted font-mono text-[0.72rem] whitespace-nowrap">
                       {u.lastLogin
                         ? new Date(u.lastLogin).toLocaleDateString("en-IN", {
                             day: "2-digit",
@@ -145,19 +145,19 @@ export default function Users() {
                           })
                         : "—"}
                     </td>
-                    <td className="p-[12px_16px] align-middle muted font-mono text-[0.72rem] whitespace-nowrap">
+                    <td className="p-[12px_16px] align-middle text-muted font-mono text-[0.72rem] whitespace-nowrap">
                       {new Date(u.createdAt).toLocaleDateString("en-IN", {
                         day: "2-digit",
                         month: "short",
                         year: "numeric",
                       })}
                     </td>
-                    <td className="p-[12px_16px] align-middle secondary">
+                    <td className="p-[12px_16px] align-middle text-secondary">
                       <button
                         className={`bg-transparent border rounded-[var(--radius-sm)] font-[var(--font-mono)] text-[0.68rem] p-[5px_10px] tracking-[0.06em] uppercase cursor-pointer transition-all duration-[var(--transition)] whitespace-nowrap disabled:opacity-40 disabled:cursor-not-allowed ${
                           u.isActive
-                            ? "border muted hover:danger hover:danger hover:bg-[var(--danger-glow)]"
-                            : "success border-[rgba(63,207,142,0.3)] hover:bg-[rgba(63,207,142,0.08)]"
+                            ? "border-border text-muted hover:border-danger hover:text-danger hover:bg-[var(--danger-glow)]"
+                            : "text-success border-[rgba(63,207,142,0.3)] hover:bg-[rgba(63,207,142,0.08)]"
                         }`}
                         onClick={() => handleToggleStatus(u._id)}
                         disabled={!!isUpdatingStatus}

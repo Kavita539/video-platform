@@ -21,7 +21,7 @@ function RequireAuth({ children }) {
   const { user, loading } = useAuth();
   if (loading)
     return (
-      <div className="flex items-center justify-center h-screen accent">
+      <div className="flex items-center justify-center h-screen text-accent">
         <Spinner size="lg" />
       </div>
     );
